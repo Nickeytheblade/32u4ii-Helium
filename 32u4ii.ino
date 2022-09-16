@@ -106,7 +106,10 @@ const lmic_pinmap lmic_pins = {
 	.nss = 8,
 	.rxtx = LMIC_UNUSED_PIN,
 	.rst = 4,
-	.dio = {7, 6, LMIC_UNUSED_PIN},
+	.dio = {7, 5, LMIC_UNUSED_PIN},
+	.rxtx_rx_active = 0,
+    	.rssi_cal = 8,              // LBT cal for the  Feather 32U4ii LoRa, in dB
+    	.spi_freq = 1000000,
 };
 
 
