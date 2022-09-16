@@ -1,14 +1,4 @@
-/*
-	Debug can be enabled optionally by defining the following
-	variable. Note that debug and deep-sleep currently
-	is not compatible
-*/
-// #define DEBUG 1
 
-/*
-	Periodic DHT-22 temperature and humidity measurement
-	with BSFrance LoRA32u4 II
-*/
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <stdint.h>
@@ -16,6 +6,15 @@
 #include <hal/hal.h>
 #include <SPI.h>
 #include <LowPower.h>
+
+#define SCK     15
+#define MISO    14
+#define MOSI    16
+#define SS      8
+#define RST     4
+#define DI0     7
+#define BAND    915E6  // 915E6
+#define PABOOST true 
 
 /*
 	Transmission interval in seconds
@@ -72,17 +71,17 @@ DHT dhtSensor(DHTPIN, DHTTYPE);
 // first. When copying an EUI from ttnctl output, this means to reverse
 // the bytes. For TTN issued EUIs the last bytes should be 0xD5, 0xB3,
 // 0x70.
-static const u1_t PROGMEM APPEUI[8]= { FILLMEIN };
+static const u1_t PROGMEM APPEUI[8]= { 0x60, 0x81, 0xF9, 0x3E, 0xD4, 0x5F, 0xEF, 0x90 };
 void os_getArtEui (u1_t* buf) { memcpy_P(buf, APPEUI, 8);}
 
 // This should also be in little endian format, see above.
-static const u1_t PROGMEM DEVEUI[8]= { FILLMEIN };
+static const u1_t PROGMEM DEVEUI[8]= { 0x60, 0x81, 0xF9, 0x92, 0xC7, 0xE8, 0x65, 0x3F };
 void os_getDevEui (u1_t* buf) { memcpy_P(buf, DEVEUI, 8);}
 
 // This key should be in big endian format (or, since it is not really a
 // number but a block of memory, endianness does not really apply). In
 // practice, a key taken from the TTN console can be copied as-is.
-static const u1_t PROGMEM APPKEY[16] = { FILLMEIN };
+static const u1_t PROGMEM APPKEY[16] = { 0x92, 0x59, 0x83, 0x2F, 0x78, 0x58, 0x0A, 0xBD, 0xF3, 0x9D, 0x95, 0xA1, 0xDF, 0x0B, 0xB1, 0xF4 };
 void os_getDevKey (u1_t* buf) {  memcpy_P(buf, APPKEY, 16);}
 
 
@@ -96,7 +95,7 @@ static osjob_t sendjob;
 #endif
 
 /*
-	Pin mapping for RFM95(W) module.
+	Pin mapping for 32U4ii module.
 
 	Depending on board revision you have to include
 	a solder bridge or connect dead 0 ohm resistors
@@ -107,9 +106,6 @@ const lmic_pinmap lmic_pins = {
 	.rxtx = LMIC_UNUSED_PIN,
 	.rst = 4,
 	.dio = {7, 5, LMIC_UNUSED_PIN},
-	.rxtx_rx_active = 0,
-    	.rssi_cal = 8,              // LBT cal for the  Feather 32U4ii LoRa, in dB
-    	.spi_freq = 1000000,
 };
 
 
