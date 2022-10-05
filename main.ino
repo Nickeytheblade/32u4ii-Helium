@@ -1,4 +1,5 @@
 // 2017-12-13 Customized for Adafruit Feather 32u4 LoRa
+// OCT 2022 Re-Done for BsFrance 32u4II v1.3 board
 
 /*******************************************************************************
  * Copyright (c) 2015 Thomas Telkamp and Matthijs Kooijman
