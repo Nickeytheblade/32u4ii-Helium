@@ -18,7 +18,8 @@
  * application key is configured, which are used in an over-the-air
  * activation procedure where a DevAddr and session keys are
  * assigned/generated for use with all further communication.
- *
+ * 
+ * No fair usage with Helium (GTG) Good to go for whtever 
  * Note: LoRaWAN per sub-band duty-cycle limitation is enforced (1% in
  * g1, 0.1% in g2), but not the TTN fair usage policy (which is probably
  * violated by this sketch when left running for longer)!
@@ -27,7 +28,8 @@
  * the things network, to set or generate an AppEUI, DevEUI and AppKey.
  * Multiple devices can use the same AppEUI, but each device has its own
  * DevEUI and AppKey.
- *
+ * 
+ * (OCT 2022) radio is defined in platformio.ini
  * Do not forget to define the radio type correctly in config.h.
  *
  *******************************************************************************/
