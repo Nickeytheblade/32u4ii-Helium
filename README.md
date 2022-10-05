@@ -1,6 +1,6 @@
-# BSFrance-32u4ii-Helium
+# BSFrance-32u4ii V 1.3 board. ON the Helium network Helium
 
-(TO DO0 
+(TO DO) 
 Decoder payload 
 
 
