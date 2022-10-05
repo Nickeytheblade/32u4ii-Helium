@@ -1,11 +1,12 @@
 # BSFrance-32u4ii-Helium
-WIP 32u4ii helium
 
+(TO DO0 
+Decoder payload 
+
+
+
+Links:
 
 https://www.thethingsnetwork.org/forum/t/big-lora32u4-boards-topic/15273
 
 https://www.thethingsnetwork.org/forum/t/big-lora32u4-boards-topic/15273/166
-
-notes on what I have found
-
-
